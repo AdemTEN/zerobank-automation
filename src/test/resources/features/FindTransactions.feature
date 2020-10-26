@@ -5,7 +5,7 @@ Background:
   And the user logs in with valid credentials
   When the user click on "Account Activity" page
   Given the user accesses the "Find Transactions" tab
-  @searchDateRange @wip
+  @searchDateRange
 Scenario: Search date range
 
     When the user enters date range from "2012-09-01" to "2012-09-06"
