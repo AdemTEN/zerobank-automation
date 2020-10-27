@@ -182,38 +182,38 @@ public class FindTransactionPage extends BasePage {
     }
 
     @FindBy(xpath = "(//table)[2]/tbody/tr/td[3]")
-    public List<WebElement> depositRow;
+    public List<WebElement> deposit;
 
     @FindBy(xpath = "(//table)[2]/tbody/tr/td[4]")
-    public List<WebElement> withdrawalRow;
+    public List<WebElement> withdrawal;
 
-    //deposit table reults
-    public void getDepositTableResult(){
-        List<String> depositResultTable = BrowserUtils.getElementsText(depositRow);
-        System.out.println(depositResultTable);
-        int count= 0;
-        for (String s : depositResultTable) {
-            if (s.length() > 0) {
-                count++;
-            }
-        }
-        Assert.assertTrue(count > 0);
+    //trnsactionType  table reults
+   public void getColumnResultFromResultTable(String transactionType){
+       List<String> transactionTypeResults = new ArrayList<>();
 
-    }
+       if(transactionType.equals("Deposit")){
+            transactionTypeResults = BrowserUtils.getElementsText(deposit);
+       }else if(transactionType.equals("Withdrawal")){
+            transactionTypeResults = BrowserUtils.getElementsText(withdrawal);
+       }
+       int count= 0;
+       for (String s : transactionTypeResults) {
+           if (s.length() > 0) {
+               count++;
+           }
+       }
+       Assert.assertTrue(count > 0);
+       System.out.println("transactionTypeResults");
 
-    //withdrawal table rusult
-    public void getWithdrawaTableResult(){
-        List<String> withdrawalTableResult = BrowserUtils.getElementsText(withdrawalRow);
-        System.out.println(withdrawalTableResult);
-        int count= 0;
-        for (String s :withdrawalTableResult) {
-            if (s.length() > 0) {
-                count++;
-            }
+   }
 
-        }
-        Assert.assertTrue(count>0);
-    }
+
+
+
+
+
+
+
     // type options
     @FindBy(xpath = "//select[contains(@name,'type')]")
     public WebElement typeOptions;
@@ -223,12 +223,18 @@ public class FindTransactionPage extends BasePage {
         typedropdown.selectByVisibleText(type);
 
     }
-    //result table has no result under withdrawal
-    public void noResultUnderWithdrawal(){
-        List<String> withdrawalTableResult = BrowserUtils.getElementsText(withdrawalRow);
-        System.out.println(withdrawalTableResult);
+
+
+    //result table has no result under TransactionType
+    public void noResultUnderTransctionType(String columName){
+       List<String> transactionTypeResults = new ArrayList<>();
+        if(columName.equals("Deposit")) {
+             transactionTypeResults = BrowserUtils.getElementsText(deposit);
+        }else if(columName.equals("withdrawal")){
+             transactionTypeResults = BrowserUtils.getElementsText(withdrawal);
+        }
         int count= 0;
-        for (String s :withdrawalTableResult) {
+        for (String s : transactionTypeResults) {
             if (s.length() > 0) {
                 count++;
             }
@@ -237,21 +243,6 @@ public class FindTransactionPage extends BasePage {
         Assert.assertTrue(count==0);
 
     }
-    //reault table has no result under deposit
-    public void noResultUnderDeposit(){
-        List<String> depositResultTable = BrowserUtils.getElementsText(depositRow);
-        System.out.println(depositResultTable);
-        int count= 0;
-        for (String s : depositResultTable) {
-            if (s.length() > 0) {
-                count++;
-            }
-        }
-        Assert.assertTrue(count == 0);
-
-
-    }
-
 
 
 

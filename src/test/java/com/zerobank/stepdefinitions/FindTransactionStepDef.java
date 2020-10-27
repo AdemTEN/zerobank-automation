@@ -38,18 +38,16 @@ public class FindTransactionStepDef {
 
     @When("clicks search")
     public void clicks_search() {
-       BrowserUtils.clickWithJS(findTransactionPage.findButton);
-       BrowserUtils.waitFor(2);
+        BrowserUtils.clickWithJS(findTransactionPage.findButton);
+        BrowserUtils.waitFor(2);
 
     }
 
     @Then("results table should only show transactions dates between {string} to {string}")
     public void results_table_should_only_show_transactions_dates_between_to(String fromDate, String toDate) throws ParseException {
 
-      //  findTransactionPage.compareDateRows(fromDate,toDate);
-        findTransactionPage.compareDatesWithinDateRange(fromDate,toDate);
-
-
+        //  findTransactionPage.compareDateRows(fromDate,toDate);
+        findTransactionPage.compareDatesWithinDateRange(fromDate, toDate);
 
 
     }
@@ -62,13 +60,13 @@ public class FindTransactionStepDef {
     }
 
 
-
     @Then("the results table should only not contain transactions dated {string}")
     public void the_results_table_should_only_not_contain_transactions_dated(String date) {
 
         findTransactionPage.isdateRows02_06ContainsDate(date);
 
     }
+
     @When("the user enters description {string}")
     public void the_user_enters_description(String description) {
 
@@ -89,15 +87,15 @@ public class FindTransactionStepDef {
         findTransactionPage.resultTableHasNotDescription(description);
     }
 
-    @Then("results table should show at least one result under Deposit")
-    public void results_table_should_show_at_least_one_result_under_Deposit() {
-        findTransactionPage.getDepositTableResult();
+    @Then("results table should show at least one result under {string}")
+    public void results_table_should_show_at_least_one_result_under(String columnName) {
+        findTransactionPage.getColumnResultFromResultTable(columnName);
 
     }
 
-    @Then("results table should show at least one result under Withdrawal")
-    public void results_table_should_show_at_least_one_result_under_Withdrawal() {
-        findTransactionPage.getWithdrawaTableResult();
+    @Then("results table should show no result under {string}")
+    public void results_table_should_show_no_result_under(String columnName) {
+        findTransactionPage.noResultUnderTransctionType(columnName);
 
     }
 
@@ -106,20 +104,5 @@ public class FindTransactionStepDef {
         findTransactionPage.selectType(type);
 
     }
-
-    @Then("results table should show no result under Withdrawal")
-    public void results_table_should_show_no_result_under_Withdrawal() {
-        findTransactionPage.noResultUnderWithdrawal();
-
-    }
-
-    @Then("results table should show no result under Deposit")
-    public void results_table_should_show_no_result_under_Deposit() {
-        findTransactionPage.noResultUnderDeposit();
-
-    }
-
-
-
 
 }

@@ -1,7 +1,7 @@
 Feature: 
 
 	
-	@EUG12-281 @wip
+	@EUG12-281
 	Scenario Outline: Scenario_Outline TestCase
 
 		
