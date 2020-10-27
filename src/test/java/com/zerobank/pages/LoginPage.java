@@ -9,8 +9,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
-    public LoginPage(){
-        PageFactory.initElements(Driver.get(),this);
+    public LoginPage() {
+        PageFactory.initElements(Driver.get(), this);
     }
 
     @FindBy(xpath = "//input[@type='text'][contains(@id,'login')]")
@@ -19,7 +19,7 @@ public class LoginPage {
     @FindBy(css = "#user_password")
     public WebElement passwordBox;
 
-    @FindBy (xpath = "//input[contains(@type,'submit')]")
+    @FindBy(xpath = "//input[contains(@type,'submit')]")
     public WebElement submit;
 
     @FindBy(xpath = "//div[@class='alert alert-error'][contains(.,'Login and/or password are wrong.')]")
@@ -28,10 +28,11 @@ public class LoginPage {
     @FindBy(xpath = "//button[contains(@type,'button')]")
     public WebElement signinButton;
 
-    public void onLoginPage(){
+    public void onLoginPage() {
         Driver.get().get(ConfigurationReader.get("url"));
     }
-    public void loginWithValidCredentials(){
+
+    public void loginWithValidCredentials() {
         BrowserUtils.clickWithJS(signinButton);
         BrowserUtils.waitFor(1);
         String usernameStr = ConfigurationReader.get("username");
@@ -41,7 +42,8 @@ public class LoginPage {
         submit.click();
 
     }
-    public void loginWithWrongCredentials(String username, String password){
+
+    public void loginWithWrongCredentials(String username, String password) {
         BrowserUtils.waitFor(1);
         BrowserUtils.clickWithJS(signinButton);
         userName.sendKeys(username);

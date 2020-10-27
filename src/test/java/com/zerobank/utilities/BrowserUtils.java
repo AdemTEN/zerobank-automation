@@ -20,6 +20,7 @@ public class BrowserUtils {
 
     /**
      * Switches to new window by the exact title. Returns to original window if target title not found
+     *
      * @param targetTitle
      */
     public static void switchToWindow(String targetTitle) {
@@ -276,6 +277,7 @@ public class BrowserUtils {
 
     /**
      * Highlighs an element by changing its background and border color
+     *
      * @param element
      */
     public static void highlight(WebElement element) {
@@ -371,8 +373,9 @@ public class BrowserUtils {
     }
 
     /**
-     *  checks that an element is present on the DOM of a page. This does not
-     *    * necessarily mean that the element is visible.
+     * checks that an element is present on the DOM of a page. This does not
+     * * necessarily mean that the element is visible.
+     *
      * @param by
      * @param time
      */
@@ -381,23 +384,23 @@ public class BrowserUtils {
     }
 
     //SORT OF DATES
-    public static void sortDates (List<String> dateList){
+    public static void sortDates(List<String> dateList) {
         Collections.sort(dateList, new Comparator<String>() {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
             //OR
             //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd '@'hh:mm a");
             @Override
             public int compare(String o1, String o2) {
-                try{
+                try {
                     //date comparations happens here
                     return dateFormat.parse(o1).compareTo(dateFormat.parse(o2));
-                }catch (ParseException e){
+                } catch (ParseException e) {
                     throw new IllegalArgumentException(e);
                 }
             }
         });
     }
-
 
 
 }

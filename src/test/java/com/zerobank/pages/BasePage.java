@@ -8,22 +8,18 @@ import org.openqa.selenium.support.PageFactory;
 
 public abstract class BasePage {
 
-    public BasePage(){
-        PageFactory.initElements(Driver.get(),this);
+    public BasePage() {
+        PageFactory.initElements(Driver.get(), this);
     }
 
     // @FindBy(xpath = "//a[contains(text(),'Account Summary')]")
     //  public WebElement pageName;
 
     //get page name
-    public WebElement getPageName(String pageName){
-        String xpath = "//a[contains(text(),'"+ pageName+"')]";
+    public WebElement getPageName(String pageName) {
+        String xpath = "//a[contains(text(),'" + pageName + "')]";
         return Driver.get().findElement(By.xpath(xpath));
     }
-
-
-
-
 
 
 }

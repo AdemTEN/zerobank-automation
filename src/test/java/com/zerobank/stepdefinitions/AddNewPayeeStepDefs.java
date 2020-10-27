@@ -17,14 +17,13 @@ public class AddNewPayeeStepDefs {
         payBillsPage.clickOnTab(tab).click();
 
 
-
     }
 
     @Then("creates new payee using following information")
-    public void creates_new_payee_using_following_information(Map<String, String> payeeInfo ) {
+    public void creates_new_payee_using_following_information(Map<String, String> payeeInfo) {
 
         payBillsPage.createNewPayee(payeeInfo.get("Payee Name"), payeeInfo.get("Payee Address")
-                , payeeInfo.get("Account"),payeeInfo.get("Payee details"));
+                , payeeInfo.get("Account"), payeeInfo.get("Payee details"));
 
 
     }
@@ -32,7 +31,7 @@ public class AddNewPayeeStepDefs {
     @Then("message The new payee {string} should be displayed")
     public void message_The_new_payee_was_successfully_created_should_be_displayed(String message) {
 
-        Assert.assertEquals(message,payBillsPage.newPayeeMessage.getText());
+        Assert.assertEquals(message, payBillsPage.newPayeeMessage.getText());
 
     }
 }

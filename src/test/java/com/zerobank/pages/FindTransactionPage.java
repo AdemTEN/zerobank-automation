@@ -27,14 +27,13 @@ public class FindTransactionPage extends BasePage {
     public WebElement descriptionBox;
 
 
-
     @FindBy(xpath = "(//table)[2]/tbody/tr")
     public List<WebElement> rowsOf01_06;
 
     int numberOfRows01_06 = rowsOf01_06.size();
 
 
-    @FindBy (xpath = "(//table)[2]/tbody/tr/td[1][contains(text(),'2012-09')]")
+    @FindBy(xpath = "(//table)[2]/tbody/tr/td[1][contains(text(),'2012-09')]")
     public List<WebElement> dateRows;
 
     public void compareDatesWithinDateRange(String fromDate, String toDate) throws ParseException {
@@ -42,23 +41,20 @@ public class FindTransactionPage extends BasePage {
         toDateBox.clear();
         List<String> dateRowsString = BrowserUtils.getElementsText(dateRows);
 
-            try{
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                java.util.Date Fdate = format.parse(fromDate);
-                java.util.Date tdate = format.parse(toDate);
-                for (String ActualDate : dateRowsString) {
-                    java.util.Date date =format.parse(ActualDate);
-                    Assert.assertTrue(date.compareTo(Fdate)>=0 && date.compareTo(tdate)<=0);
-                }
-            }catch (Exception e){
-                e.printStackTrace();
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date Fdate = format.parse(fromDate);
+            java.util.Date tdate = format.parse(toDate);
+            for (String ActualDate : dateRowsString) {
+                java.util.Date date = format.parse(ActualDate);
+                Assert.assertTrue(date.compareTo(Fdate) >= 0 && date.compareTo(tdate) <= 0);
             }
-
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
 
     }
-
-
 
 
 //old version of verify range date
@@ -92,9 +88,9 @@ public class FindTransactionPage extends BasePage {
     }
  */
 
-    public void isdateRows02_06ContainsDate(String date){
+    public void isdateRows02_06ContainsDate(String date) {
         List<String> dateRows02_06 = BrowserUtils.getElementsText(dateRows);
-       Assert.assertFalse(dateRows02_06.contains(date));
+        Assert.assertFalse(dateRows02_06.contains(date));
        /*
         for (String s : dateRows02_06) {
             Assert.assertFalse(s.equals(date));
@@ -107,65 +103,67 @@ public class FindTransactionPage extends BasePage {
 
     //Sort of dates
 
-     public void sortOfDates(){
-         List<String> dateList1 = BrowserUtils.getElementsText(dateRows);
+    public void sortOfDates() {
+        List<String> dateList1 = BrowserUtils.getElementsText(dateRows);
 
-         System.out.println("BEFORE SORTED datelist1");
-         for (String s1 : dateList1) {
-             System.out.println(s1);
-         }
-         List<String> dateList2 = new ArrayList<>();
-         for (int i = 0; i < dateList1.size(); i++) {
-              dateList2.add(dateList1.get(i));
+        System.out.println("BEFORE SORTED datelist1");
+        for (String s1 : dateList1) {
+            System.out.println(s1);
+        }
+        List<String> dateList2 = new ArrayList<>();
+        for (int i = 0; i < dateList1.size(); i++) {
+            dateList2.add(dateList1.get(i));
 
-         }
-         System.out.println("dateList2");
-         for (String s : dateList2) {
-             System.out.println(s);
+        }
+        System.out.println("dateList2");
+        for (String s : dateList2) {
+            System.out.println(s);
 
-         }
+        }
 
-         //sort Method
-         sortDates(dateList1);
+        //sort Method
+        sortDates(dateList1);
 
 
-         System.out.println("AFTER SORTED dateList1");
-         for (String s1 : dateList1) {
-             System.out.println(s1);
-         }
-         int size = dateList1.size();
-         System.out.println("COMPARATION TWO DATE LIST ");
-         for (int i = dateList1.size()-1, j = 0; i >= 0; i--,j++) {
-             System.out.println(dateList1.get(i));
-             System.out.println(dateList2.get(j));
-             Assert.assertTrue(dateList1.get(i).equals(dateList2.get(j)));
+        System.out.println("AFTER SORTED dateList1");
+        for (String s1 : dateList1) {
+            System.out.println(s1);
+        }
+        int size = dateList1.size();
+        System.out.println("COMPARATION TWO DATE LIST ");
+        for (int i = dateList1.size() - 1, j = 0; i >= 0; i--, j++) {
+            System.out.println(dateList1.get(i));
+            System.out.println(dateList2.get(j));
+            Assert.assertTrue(dateList1.get(i).equals(dateList2.get(j)));
 
-         }
+        }
 
-     }
-     public static void sortDates (List<String> dateList){
-         Collections.sort(dateList, new Comparator<String>() {
-             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-             //OR
-             //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd '@'hh:mm a");
-             @Override
-             public int compare(String o1, String o2) {
-                 try{
-                     //date comparations happens here
-                     return dateFormat.parse(o1).compareTo(dateFormat.parse(o2));
-                 }catch (ParseException e){
-                     throw new IllegalArgumentException(e);
-                 }
-             }
-         });
-     }
+    }
 
-     @FindBy(xpath = "(//table)[2]/tbody/tr/td[2]")
+    public static void sortDates(List<String> dateList) {
+        Collections.sort(dateList, new Comparator<String>() {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+            //OR
+            //DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd '@'hh:mm a");
+            @Override
+            public int compare(String o1, String o2) {
+                try {
+                    //date comparations happens here
+                    return dateFormat.parse(o1).compareTo(dateFormat.parse(o2));
+                } catch (ParseException e) {
+                    throw new IllegalArgumentException(e);
+                }
+            }
+        });
+    }
+
+    @FindBy(xpath = "(//table)[2]/tbody/tr/td[2]")
     public List<WebElement> descriptionColumn;
 
 
     //verify result table has only ONLINE transfers
-    public  void hasreultTableDescription(String description){
+    public void hasreultTableDescription(String description) {
         descriptionBox.clear();
         List<String> listOfDescriptons = BrowserUtils.getElementsText(descriptionColumn);
         System.out.println(listOfDescriptons);
@@ -174,8 +172,9 @@ public class FindTransactionPage extends BasePage {
 
         }
     }
+
     //verify that results table should not have Online transfers
-    public void resultTableHasNotDescription(String description){
+    public void resultTableHasNotDescription(String description) {
         List<String> listOfDescriptons = BrowserUtils.getElementsText(descriptionColumn);
         Assert.assertFalse(listOfDescriptons.contains(description));
 
@@ -188,37 +187,31 @@ public class FindTransactionPage extends BasePage {
     public List<WebElement> withdrawal;
 
     //trnsactionType  table reults
-   public void getColumnResultFromResultTable(String transactionType){
-       List<String> transactionTypeResults = new ArrayList<>();
+    public void getColumnResultFromResultTable(String transactionType) {
+        List<String> transactionTypeResults = new ArrayList<>();
 
-       if(transactionType.equals("Deposit")){
+        if (transactionType.equals("Deposit")) {
             transactionTypeResults = BrowserUtils.getElementsText(deposit);
-       }else if(transactionType.equals("Withdrawal")){
+        } else if (transactionType.equals("Withdrawal")) {
             transactionTypeResults = BrowserUtils.getElementsText(withdrawal);
-       }
-       int count= 0;
-       for (String s : transactionTypeResults) {
-           if (s.length() > 0) {
-               count++;
-           }
-       }
-       Assert.assertTrue(count > 0);
-       System.out.println("transactionTypeResults");
+        }
+        int count = 0;
+        for (String s : transactionTypeResults) {
+            if (s.length() > 0) {
+                count++;
+            }
+        }
+        Assert.assertTrue(count > 0);
+        System.out.println("transactionTypeResults");
 
-   }
-
-
-
-
-
-
+    }
 
 
     // type options
     @FindBy(xpath = "//select[contains(@name,'type')]")
     public WebElement typeOptions;
 
-    public void selectType(String type){
+    public void selectType(String type) {
         Select typedropdown = new Select(typeOptions);
         typedropdown.selectByVisibleText(type);
 
@@ -226,39 +219,23 @@ public class FindTransactionPage extends BasePage {
 
 
     //result table has no result under TransactionType
-    public void noResultUnderTransctionType(String columName){
-       List<String> transactionTypeResults = new ArrayList<>();
-        if(columName.equals("Deposit")) {
-             transactionTypeResults = BrowserUtils.getElementsText(deposit);
-        }else if(columName.equals("withdrawal")){
-             transactionTypeResults = BrowserUtils.getElementsText(withdrawal);
+    public void noResultUnderTransctionType(String columName) {
+        List<String> transactionTypeResults = new ArrayList<>();
+        if (columName.equals("Deposit")) {
+            transactionTypeResults = BrowserUtils.getElementsText(deposit);
+        } else if (columName.equals("withdrawal")) {
+            transactionTypeResults = BrowserUtils.getElementsText(withdrawal);
         }
-        int count= 0;
+        int count = 0;
         for (String s : transactionTypeResults) {
             if (s.length() > 0) {
                 count++;
             }
 
         }
-        Assert.assertTrue(count==0);
+        Assert.assertTrue(count == 0);
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

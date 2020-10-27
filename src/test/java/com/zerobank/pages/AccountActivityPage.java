@@ -14,17 +14,18 @@ public class AccountActivityPage extends BasePage {
     @FindBy(xpath = "//select[contains(@name,'accountId')]")
     public WebElement accountOptions;
 
-    public Select accountOptionList(){
+    public Select accountOptionList() {
         return new Select(accountOptions);
     }
+
     @FindBy(xpath = "//thead//th")
     public List<WebElement> tableheads;
 
-  //  @FindBy(xpath = "//a[contains(.,'Brokerage')]")
-  //  public WebElement accountlinks;
+    //  @FindBy(xpath = "//a[contains(.,'Brokerage')]")
+    //  public WebElement accountlinks;
 
-    public WebElement getlinks(String link){
-        String xpath = "//a[contains(.,'"+ link +"')]";
+    public WebElement getlinks(String link) {
+        String xpath = "//a[contains(.,'" + link + "')]";
         return Driver.get().findElement(By.xpath(xpath));
 
     }
@@ -32,8 +33,8 @@ public class AccountActivityPage extends BasePage {
     @FindBy(xpath = "//a[contains(.,'Find Transactions')]")
     public WebElement findTransactionTab;
 
-    public WebElement getTab(String tab){
-        String xpath = "//a[contains(.,'" + tab +"')]";
+    public WebElement getTab(String tab) {
+        String xpath = "//a[contains(.,'" + tab + "')]";
         return Driver.get().findElement(By.xpath(xpath));
     }
 

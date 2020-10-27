@@ -1,4 +1,5 @@
 Feature: Account activity page
+
   @account_activity
   Scenario: user should be able to enter Account Activity page
     Given the user is on the login page

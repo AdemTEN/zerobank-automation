@@ -1,12 +1,14 @@
 @FindTransactions
 Feature: Find Transactions in Account Activity
-Background:
-  Given the user is on the login page
-  And the user logs in with valid credentials
-  When the user click on "Account Activity" page
-  Given the user accesses the "Find Transactions" tab
+
+  Background:
+    Given the user is on the login page
+    And the user logs in with valid credentials
+    When the user click on "Account Activity" page
+    Given the user accesses the "Find Transactions" tab
+
   @searchDateRange
-Scenario: Search date range
+  Scenario: Search date range
 
     When the user enters date range from "2012-09-01" to "2012-09-06"
     And clicks search
@@ -17,7 +19,7 @@ Scenario: Search date range
     Then results table should only show transactions dates between "2012-09-02" to "2012-09-06"
     And the results table should only not contain transactions dated "2012-09-01"
 
-    @Search_description
+  @Search_description
   Scenario: Search description
 
     When the user enters description "ONLINE"
@@ -28,7 +30,7 @@ Scenario: Search date range
     Then results table should only show descriptions containing "OFFICE"
     But results table should not show descriptions containing "ONLINE"
 
-      @case_sensitive
+  @case_sensitive
   Scenario: Search description case insensitive
 
     When the user enters description "ONLINE"

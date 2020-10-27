@@ -23,13 +23,13 @@ public class AccountSummaryStepDefs {
     @Then("page should have following account types")
     public void page_should_have_following_account_types(List<String> expectedAccountTypes) {
 
-      accountSummaryPage.getAccountTypes(expectedAccountTypes);
+        accountSummaryPage.getAccountTypes(expectedAccountTypes);
 
     }
 
     @Then("Credit Accounts table must have following columns")
-    public void credit_Accounts_table_must_have_following_columns(List<String> expectedCreditAccountsColumns ) {
-         accountSummaryPage.getTableHeader(expectedCreditAccountsColumns);
+    public void credit_Accounts_table_must_have_following_columns(List<String> expectedCreditAccountsColumns) {
+        accountSummaryPage.getTableHeader(expectedCreditAccountsColumns);
 
     }
 }

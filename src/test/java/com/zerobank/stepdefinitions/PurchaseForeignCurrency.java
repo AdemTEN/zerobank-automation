@@ -15,8 +15,9 @@ import java.util.List;
 public class PurchaseForeignCurrency {
 
     PayBillsPage payBillsPage = new PayBillsPage();
+
     @Then("following currencies should be available")
-    public void following_currencies_should_be_available( List<String> expectedCurrencyOptions) {
+    public void following_currencies_should_be_available(List<String> expectedCurrencyOptions) {
 
         payBillsPage.verifyCurrencyOptionList(expectedCurrencyOptions);
 
@@ -31,24 +32,16 @@ public class PurchaseForeignCurrency {
     }
 
 
-
     @Then("error message on popup {string} should be displayed")
     public void error_message_on_popup_should_be_displayed(String message) {
         payBillsPage.errorMessage(message);
     }
 
 
-
-
-
     @When("user tries to calculate cost without entering a value and click on purchase button")
     public void user_tries_to_calculate_cost_without_entering_a_value_and_click_on_purchase_button() {
         BrowserUtils.clickWithJS(payBillsPage.calculateCostButton);
     }
-
-
-
-
 
 
 }

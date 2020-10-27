@@ -17,8 +17,8 @@ public class AccountActivityStepDef {
 
     @When("the user click on {string} page")
     public void the_user_click_on_page(String pageName) {
-       accountSummaryPage.getPageName(pageName).click();
-       BrowserUtils.waitFor(2);
+        accountSummaryPage.getPageName(pageName).click();
+        BrowserUtils.waitFor(2);
 
 
     }
@@ -35,7 +35,7 @@ public class AccountActivityStepDef {
         Select accountDropdown = accountActivityPage.accountOptionList();
         List<WebElement> accountOptions = accountDropdown.getOptions();
         List<String> actualOptions = BrowserUtils.getElementsText(accountOptions);
-        Assert.assertEquals(expectedOptions,actualOptions);
+        Assert.assertEquals(expectedOptions, actualOptions);
 
     }
 
@@ -43,7 +43,7 @@ public class AccountActivityStepDef {
     public void transactions_table_should_have_column_names(List<String> expectedHeads) {
 
         List<String> actualHeads = BrowserUtils.getElementsText(accountActivityPage.tableheads);
-        Assert.assertEquals(expectedHeads,actualHeads);
+        Assert.assertEquals(expectedHeads, actualHeads);
 
     }
 

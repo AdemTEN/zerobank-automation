@@ -25,7 +25,7 @@ public class LoginStepDefs {
 
     @Then("{string} page should be displayed")
     public void page_should_be_displayed(String expectedPageName) {
-        Assert.assertEquals(expectedPageName,new AccountSummaryPage().getPageName(expectedPageName).getText());
+        Assert.assertEquals(expectedPageName, new AccountSummaryPage().getPageName(expectedPageName).getText());
 
     }
 
@@ -36,14 +36,9 @@ public class LoginStepDefs {
 
 
     @Then("error message {string} should be displayed")
-    public void error_message_should_be_displayed(String expectedMessage ) {
+    public void error_message_should_be_displayed(String expectedMessage) {
         Assert.assertEquals(expectedMessage, loginPage.message.getText());
     }
-
-
-
-
-
 
 
 }

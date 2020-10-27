@@ -29,7 +29,6 @@ Feature: Purchase Foreign Currency
       | Thailand (baht)       |
 
 
-
   @wip
   Scenario Outline: Error message for not selecting currency or entering value
     When user tries to calculate cost without enter a "<Currency or Amount>" and click on purchase button

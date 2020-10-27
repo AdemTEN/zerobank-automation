@@ -15,7 +15,6 @@ Feature: user is on the Pay Bills page
     Then the message "The payment was successfully submitted." should be displayed
 
 
-
   Scenario Outline: user should  enter  any amount in amount box and date in date box <input>
 
     Then the user try to make payment without "<input>"
@@ -25,8 +24,6 @@ Feature: user is on the Pay Bills page
       | input  | message                     | box name   |
       | amount | Please fill out this field. | Amount Box |
       | date   | Please fill out this field. | Date Box   |
-
-
 
 
   Scenario Outline: user should  enter only numbers  in amount and date input box <input>

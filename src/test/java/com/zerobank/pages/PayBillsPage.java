@@ -95,30 +95,28 @@ public class PayBillsPage extends BasePage {
 
 
     //user tries to calculate cost without enter a "Currency"  or "Amount" and click on purchase button
-        public void enterCurrencyOrAmount(String currencyOrAmount) {
-            if (currencyOrAmount.equals("Currency")) {
-               amountInputBox.sendKeys("3000");
-            }else if(currencyOrAmount.equals("Amount")){
-                Select currencyDropdown = new Select(currencyOptions);
-                currencyDropdown.selectByVisibleText("Canada (dollar)");
-            }
-            BrowserUtils.clickWithJS(calculateCostButton);
+    public void enterCurrencyOrAmount(String currencyOrAmount) {
+        if (currencyOrAmount.equals("Currency")) {
+            amountInputBox.sendKeys("3000");
+        } else if (currencyOrAmount.equals("Amount")) {
+            Select currencyDropdown = new Select(currencyOptions);
+            currencyDropdown.selectByVisibleText("Canada (dollar)");
         }
+        BrowserUtils.clickWithJS(calculateCostButton);
+    }
 
 
-
-
-    public void verifyCurrencyOptionList(List<String> expectedCurrencyOptions){
+    public void verifyCurrencyOptionList(List<String> expectedCurrencyOptions) {
         Select currencyDropdown = getCurrencyOptionList();
         List<WebElement> currencyOptions = currencyDropdown.getOptions();
         List<String> actualCurrencyOptions = new ArrayList<>();
 
         for (WebElement currencyOption : currencyOptions) {
-            if(!currencyOption.getText().equals("Select One")){
+            if (!currencyOption.getText().equals("Select One")) {
                 actualCurrencyOptions.add(currencyOption.getText());
             }
         }
-        Assert.assertEquals(expectedCurrencyOptions,actualCurrencyOptions);
+        Assert.assertEquals(expectedCurrencyOptions, actualCurrencyOptions);
         System.out.println("actualCurrencyOptions = " + actualCurrencyOptions);
         System.out.println("expectedCurrencyOptions = " + expectedCurrencyOptions);
 
@@ -134,8 +132,6 @@ public class PayBillsPage extends BasePage {
 
 
     }
-
-
 
 
     public void completePayment() {
