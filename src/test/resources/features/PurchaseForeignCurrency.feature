@@ -12,7 +12,6 @@ Feature: Purchase Foreign Currency
   Scenario: Available currencies
 
     Then following currencies should be available
-      | Select One            |
       | Australia (dollar)    |
       | Canada (dollar)       |
       | Switzerland (franc)   |
@@ -30,15 +29,15 @@ Feature: Purchase Foreign Currency
       | Thailand (baht)       |
 
 
-  @errormessage_without_currency
-  Scenario: Error message for not selecting currency
 
-    When user tries to calculate cost without selecting a currency and click on purchase button
-    Then error message on popup "Please, ensure that you have filled all the required fields with valid values." should be displayed
+  @wip
+  Scenario Outline: Error message for not selecting currency or entering value
+    When user tries to calculate cost without enter a "<Currency or Amount>" and click on purchase button
+    Then error message on popup "<Error Message>" should be displayed
 
-  @arrormessage_without_value
-  Scenario: Error message for not entering value
-    And Select "Australia (dollar)" from the currency
-    When user tries to calculate cost without entering a value and click on purchase button
-    Then error message on popup "Please, ensure that you have filled all the required fields with valid values." should be displayed
+    Examples:
+
+      | Currency or Amount | Error Message                                                                  |
+      | Currency           | Please, ensure that you have filled all the required fields with valid values. |
+      | Amount             | Please, ensure that you have filled all the required fields with valid values. |
 

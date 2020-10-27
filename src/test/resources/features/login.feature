@@ -30,7 +30,7 @@ Feature: user should be able to login
     Then error message "Login and/or password are wrong." should be displayed
 
   @login @wrong_credential
-  Scenario Outline: user shouldn't be able to login with wrong  credentials
+  Scenario Outline: user shouldn't be able to login with wrong  credentials <username>
     When user enter "<username>" as username and "<password>" as password
     Then error message "<message>" should be displayed
 

@@ -10,6 +10,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class PayBillsPage extends BasePage {
 
@@ -39,8 +42,7 @@ public class PayBillsPage extends BasePage {
     //tabs of Pay Bills page
     @FindBy(xpath = "//a[contains(.,'Add New Payee')]")
     public WebElement pageBillsTabs;
-    private Object MessagePopUp;
-    private Process logger;
+
 
     public WebElement clickOnTab(String tab) {
         String xpath = "//a[contains(.,'" + tab + "')]";
@@ -81,12 +83,48 @@ public class PayBillsPage extends BasePage {
     @FindBy(xpath = "//select[contains(@name,'currency')]")
     public WebElement currencyOptions;
 
+    @FindBy(xpath = "//input[contains(@id,'pc_amount')]")
+    public WebElement amountInputBox;
+
     public Select getCurrencyOptionList() {
         return new Select(currencyOptions);
     }
 
-    @FindBy(xpath = "//input[contains(@id,'purchase_cash')]")
-    public WebElement purchaseButton;
+    @FindBy(xpath = "//input[@type='button'][contains(@id,'costs')]")
+    public WebElement calculateCostButton;
+
+
+    //user tries to calculate cost without enter a "Currency"  or "Amount" and click on purchase button
+        public void enterCurrencyOrAmount(String currencyOrAmount) {
+            if (currencyOrAmount.equals("Currency")) {
+               amountInputBox.sendKeys("3000");
+            }else if(currencyOrAmount.equals("Amount")){
+                Select currencyDropdown = new Select(currencyOptions);
+                currencyDropdown.selectByVisibleText("Canada (dollar)");
+            }
+            BrowserUtils.clickWithJS(calculateCostButton);
+        }
+
+
+
+
+    public void verifyCurrencyOptionList(List<String> expectedCurrencyOptions){
+        Select currencyDropdown = getCurrencyOptionList();
+        List<WebElement> currencyOptions = currencyDropdown.getOptions();
+        List<String> actualCurrencyOptions = new ArrayList<>();
+
+        for (WebElement currencyOption : currencyOptions) {
+            if(!currencyOption.getText().equals("Select One")){
+                actualCurrencyOptions.add(currencyOption.getText());
+            }
+        }
+        Assert.assertEquals(expectedCurrencyOptions,actualCurrencyOptions);
+        System.out.println("actualCurrencyOptions = " + actualCurrencyOptions);
+        System.out.println("expectedCurrencyOptions = " + expectedCurrencyOptions);
+
+
+    }
+
 
     public void errorMessage(String expectedMessage) {
         Alert alert = Driver.get().switchTo().alert();
@@ -97,10 +135,7 @@ public class PayBillsPage extends BasePage {
 
     }
 
-    public void selectCurrency(String currency) {
-        Select currencyDropdown = new Select(currencyOptions);
-        currencyDropdown.selectByVisibleText(currency);
-    }
+
 
 
     public void completePayment() {

@@ -38,7 +38,7 @@ Scenario: Search date range
     And clicks search
     Then results table should not show descriptions containing "ONLINE"
 
-  @type @wip
+  @type
   Scenario: Type
 
     And clicks search
