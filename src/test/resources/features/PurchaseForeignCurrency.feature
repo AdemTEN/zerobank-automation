@@ -29,14 +29,14 @@ Feature: Purchase Foreign Currency
       | Thailand (baht)       |
 
 
-  @wip
-  Scenario Outline: Error message for not selecting currency or entering value
+
+  Scenario Outline: Error message for not selecting currency or entering value <Currency or Amount>
     When user tries to calculate cost without enter a "<Currency or Amount>" and click on purchase button
     Then error message on popup "<Error Message>" should be displayed
 
     Examples:
 
-      | Currency or Amount | Error Message                                                                  |
+      | Currency or Amount | Error Message                                                                 |
       | Currency           | Please, ensure that you have filled all the required fields with valid values. |
       | Amount             | Please, ensure that you have filled all the required fields with valid values. |
 
