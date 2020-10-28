@@ -19,7 +19,7 @@ Feature: Find Transactions in Account Activity
     Then results table should only show transactions dates between "2012-09-02" to "2012-09-06"
     And the results table should only not contain transactions dated "2012-09-01"
 
-  @Search_description
+  @Search_description @wip
   Scenario: Search description
 
     When the user enters description "ONLINE"
@@ -30,7 +30,7 @@ Feature: Find Transactions in Account Activity
     Then results table should only show descriptions containing "OFFICE"
     But results table should not show descriptions containing "ONLINE"
 
-  @case_sensitive
+  @case_sensitive |
   Scenario: Search description case insensitive
 
     When the user enters description "ONLINE"
@@ -38,6 +38,7 @@ Feature: Find Transactions in Account Activity
     Then results table should only show descriptions containing "ONLINE"
     When the user enters description "online"
     And clicks search
+    #There is a mistake
     Then results table should not show descriptions containing "ONLINE"
 
   @type

@@ -161,6 +161,9 @@ public class FindTransactionPage extends BasePage {
     @FindBy(xpath = "(//table)[2]/tbody/tr/td[2]")
     public List<WebElement> descriptionColumn;
 
+    @FindBy(xpath = "//div[@class='well'][contains(.,'No results.')]")
+    public WebElement noResult;
+
 
     //verify result table has only ONLINE transfers
     public void hasreultTableDescription(String description) {
@@ -173,10 +176,18 @@ public class FindTransactionPage extends BasePage {
         }
     }
 
+
+
     //verify that results table should not have Online transfers
     public void resultTableHasNotDescription(String description) {
-        List<String> listOfDescriptons = BrowserUtils.getElementsText(descriptionColumn);
+       List<String> listOfDescriptons = BrowserUtils.getElementsText(descriptionColumn);
         Assert.assertFalse(listOfDescriptons.contains(description));
+
+       // Assert.assertEquals("No results.", noResult.getText() );
+
+
+
+
 
     }
 
