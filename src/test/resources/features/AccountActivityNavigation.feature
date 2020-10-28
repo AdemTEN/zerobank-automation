@@ -36,7 +36,7 @@ Feature: Navigating to specific accounts in Accounts Activity
     Then the page title should be "Zero - Account Activity"
     Then verify Account dropdown default option should be "Loan"
 
-  @AccountActivityNavigation @wip
+  @AccountActivityNavigation
   Scenario Outline: Accounts Redirect <link>
     When the user clicks on "<link>" link on the Account Summary page
     Then the page title should be "<page title>"

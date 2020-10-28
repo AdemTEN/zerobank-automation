@@ -168,6 +168,7 @@ public class FindTransactionPage extends BasePage {
         List<String> listOfDescriptons = BrowserUtils.getElementsText(descriptionColumn);
         System.out.println(listOfDescriptons);
         for (String listOfDescripton : listOfDescriptons) {
+            System.out.println("burada");
             Assert.assertTrue(listOfDescripton.contains(description));
 
         }

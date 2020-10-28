@@ -30,7 +30,7 @@ Feature: Find Transactions in Account Activity
     Then results table should only show descriptions containing "OFFICE"
     But results table should not show descriptions containing "ONLINE"
 
-  @case_sensitive
+  @case_sensitive @wip
   Scenario: Search description case insensitive
 
     When the user enters description "ONLINE"
