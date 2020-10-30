@@ -1,3 +1,4 @@
+@smoke
 Feature: Add new payee under pay bills
 
   @add_new_payee

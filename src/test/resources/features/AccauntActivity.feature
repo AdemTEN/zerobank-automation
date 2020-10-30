@@ -1,3 +1,4 @@
+@smoke
 Feature: Account activity page
 
   @account_activity
